@@ -13,7 +13,7 @@ class RewardModel(nn.Module):
         super().__init__()
         self.backbone = GPTModel(config)
         if pretrained_backbone_path:
-            ckpt = torch.load(pretrained_backbone_path, map_location="cpu")
+            ckpt = torch.load(pretrained_backbone_path, map_location="cpu", weights_only=False)
             self.backbone.load_state_dict(ckpt["model_state_dict"])
 
         self.reward_head = nn.Linear(config.d_model, 1, bias=False)

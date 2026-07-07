@@ -75,7 +75,7 @@ def generate_greedy(model, tokenizer, prompt, max_new_tokens=100, device="cuda")
 def load_model_for_inference(checkpoint_path, model_config_path="configs/model_small.yaml", device="cuda"):
     config = ModelConfig.from_yaml(model_config_path)
     model = GPTModel(config).to(device)
-    ckpt = torch.load(checkpoint_path, map_location=device)
+    ckpt = torch.load(checkpoint_path, map_location=device, weights_only=False)
     model.load_state_dict(ckpt["model_state_dict"])
     model.eval()
     return model

@@ -37,7 +37,7 @@ if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
     config = ModelConfig.from_yaml(args.model_config)
     model = GPTModel(config).to(device)
-    ckpt = torch.load(args.checkpoint, map_location=device)
+    ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)
     model.load_state_dict(ckpt["model_state_dict"])
 
     ppl, loss = compute_perplexity(model, args.val_bin, batch_size=8,

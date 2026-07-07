@@ -73,7 +73,7 @@ def save_checkpoint(model, optimizer, step, config, checkpoint_dir, name, drive_
 
 
 def load_checkpoint(path, model, optimizer=None, device="cuda"):
-    ckpt = torch.load(path, map_location=device)
+    ckpt = torch.load(path, map_location=device, weights_only=False)
     model.load_state_dict(ckpt["model_state_dict"])
     if optimizer is not None and "optimizer_state_dict" in ckpt and ckpt["optimizer_state_dict"] is not None:
         optimizer.load_state_dict(ckpt["optimizer_state_dict"])
