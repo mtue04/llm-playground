@@ -1,7 +1,10 @@
 import argparse
 import os
+import sys
 import torch
 import yaml
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from model.config import ModelConfig
 from model.architecture import GPTModel

@@ -1,5 +1,9 @@
+import os
+import sys
 import torch
 import torch.nn as nn
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 
 from model.architecture import GPTModel
 
