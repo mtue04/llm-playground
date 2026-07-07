@@ -1,0 +1,29 @@
+data:
+  sft_dataset: "HuggingFaceH4/no_robots"
+  max_samples: 2000
+  prompt_template: |
+    ### Instruction:
+    {instruction}
+
+    ### Response:
+    {response}
+
+training:
+  batch_size: 4
+  gradient_accumulation_steps: 8
+  max_steps: 800
+  eval_interval: 100
+  checkpoint_interval: 200
+
+optimizer:
+  learning_rate: 5.0e-5
+  min_learning_rate: 5.0e-6
+  weight_decay: 0.01
+  grad_clip: 1.0
+  warmup_steps: 50
+
+system:
+  device: "cuda"
+  dtype: "float16"
+  pretrained_checkpoint: "checkpoints/pretrain_final.pt"
+  checkpoint_dir: "checkpoints"

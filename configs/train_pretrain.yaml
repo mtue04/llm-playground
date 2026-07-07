@@ -1,0 +1,26 @@
+data:
+  process_dir: "data/processed"
+  train_bin: "train.bin"
+  val_bin: "val.bin"
+
+training:
+  batch_size: 8
+  max_steps: 5000
+  eval_interval: 250
+  eval_iters: 50
+  checkpoint_interval: 500
+
+optimizer:
+  learning_rate: 3.0e-4
+  min_learning_rate: 3.0e-5
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip: 1.0
+  warmup_steps: 200
+
+system:
+  device: "cuda"
+  dtype: "float16"
+  compile: false # torch.compile currently has a bug that causes OOMs on some GPUs, so we disable it by default. Set to true to enable.
+  checkpoint_dir: "checkpoints"
